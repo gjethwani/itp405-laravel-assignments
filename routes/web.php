@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Route::get('/invoices', 'InvoicesController@index');
 Route::get('/invoices/{id}', 'InvoicesController@show');
-//Route::get('/genres', 'GenresController');
-//Route::get('/tracks','TracksController');
+Route::get('/genres', 'GenresController@index');
+Route::get('/tracks','TracksController@index');
 Route::get('/phpinfo', function() {
   echo phpinfo();
 });
