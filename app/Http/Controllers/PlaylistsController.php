@@ -50,10 +50,13 @@ class PlaylistsController extends Controller
     }
     public function edit(Request $request, $id)
     {
-      $playlistName = $request->input('name');
+      $playlistName = DB::table('playlists')
+        ->select('Name')
+        ->where('PlaylistId','=',$id)
+        ->get();
       return view('edit-playlist', [
           'id' => $id,
-          'name' => $playlistName
+          'name' => $playlistName[0]->Name
       ]);//->withInput();
     }
 

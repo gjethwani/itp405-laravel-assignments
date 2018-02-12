@@ -12,12 +12,12 @@
                     {{$playlist->Name}}
                 </a>
                 <a
-                  href="/playlists/{{$playlist->PlaylistId}}/edit?name={{$playlist->Name}}">
+                  href="/playlists/{{$playlist->PlaylistId}}/edit">
                   | Edit |
                 </a>
                 <a
                   href="/playlists/{{$playlist->PlaylistId}}/delete">
-                  Delete 
+                  Delete
                 </a>
             </li>
         @endforeach
