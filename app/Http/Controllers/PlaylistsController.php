@@ -52,7 +52,8 @@ class PlaylistsController extends Controller
     {
       $playlistName = $request->input('name');
       return view('edit-playlist', [
-          'id' => $id
+          'id' => $id,
+          'name' => $playlistName
       ]);//->withInput();
     }
 

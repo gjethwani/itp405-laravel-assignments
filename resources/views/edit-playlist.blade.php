@@ -17,13 +17,22 @@
         {{csrf_field()}}
         <div class="form-group">
             <label for="playlist">Playlist Name</label>
-            <input
+            @if (old('playlist', null) != null)
+              <input
                 type="text"
                 value="{{old('playlist')}}"
                 id="playlist"
                 name="playlist"
                 class="form-control">
+            @else
+              <input
+                type="text"
+                value="{{$name}}"
+                id="playlist"
+                name="playlist"
+                class="form-control">
+            @endif
         </div>
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" class="btn btn-primary">Edit</button>
     </form>
 @endsection
