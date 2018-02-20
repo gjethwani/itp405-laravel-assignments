@@ -12,4 +12,9 @@ class Track extends Model
     {
         return $this->belongsTo('App\Album', 'AlbumId');
     }
+
+    public function MediaType()
+    {
+        return $this->belongsTo('App\MediaType', 'MediaTypeId');
+    }
 }
