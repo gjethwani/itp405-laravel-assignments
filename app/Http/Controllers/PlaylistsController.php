@@ -3,20 +3,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Validator;
+use App\Playlist;
+
 class PlaylistsController extends Controller
 {
     public function index()
     {
-        $playlists = DB::table('playlists')->get();
+        //$playlists = DB::table('playlists')->get();
+        $playlists = Playlist::all();
         return view('playlist-list', [
             'playlists' => $playlists
         ]);
     }
     public function show($playlistID)
     {
-        $playlist = DB::table('playlists')
-            ->where('PlaylistId', '=', $playlistID)
-            ->first();
+        //$playlist = DB::table('playlists')
+        //    ->where('PlaylistId', '=', $playlistID)
+        //    ->first();
+        $playlist = Playlist::find($playlistID);
         $tracks = DB::table('playlist_track')
             ->join('tracks', 'tracks.TrackId', '=', 'playlist_track.TrackId')
             ->where('PlaylistId', '=', $playlistID)
@@ -38,9 +42,12 @@ class PlaylistsController extends Controller
             'playlistName' => 'required|min:3'
         ]);
         if ($validation->passes()) {
-            DB::table('playlists')->insert([
-                'Name' => $request->input('playlist')
-            ]);
+            //DB::table('playlists')->insert([
+            //    'Name' => $request->input('playlist')
+            //]);
+            $playlist = new Playlist();
+            $playlist->Name = $request->input('playlist');
+            $playlist->save();
             return redirect('/playlists');
         } else {
             return redirect('/playlists/new')
@@ -50,13 +57,15 @@ class PlaylistsController extends Controller
     }
     public function edit(Request $request, $id)
     {
-      $playlistName = DB::table('playlists')
+    /*  $playlistName = DB::table('playlists')
         ->select('Name')
         ->where('PlaylistId','=',$id)
-        ->get();
+        ->get();*/
+      $playlist = Playlist::find($id);
+      $playlistName = $playlist->Name;
       return view('edit-playlist', [
           'id' => $id,
-          'name' => $playlistName[0]->Name
+          'name' => $playlistName
       ]);//->withInput();
     }
 
@@ -68,9 +77,12 @@ class PlaylistsController extends Controller
           'playlistName' => 'required|min:3'
       ]);
       if ($validation->passes()) {
-          DB::table('playlists')
+          /*DB::table('playlists')
             ->where('PlaylistId', $id)
-            ->update(['Name' => $request->input('playlist')]);
+            ->update(['Name' => $request->input('playlist')]);*/
+          $toUpdate = Playlist::find($id);
+          $toUpdate->Name = $request->input('playlist');
+          $toUpdate->save();
           return redirect('/playlists');
       } else {
           return redirect('/playlists/'.$id.'/edit')
@@ -80,9 +92,11 @@ class PlaylistsController extends Controller
     }
     public function delete($id)
     {
-        DB::table('playlists')
+        /*DB::table('playlists')
           ->where('PlaylistId', '=', $id)
-          ->delete();
+          ->delete();*/
+        $toDelete = Playlist::find($id);
+        $toDelete->delete();
         return redirect('/playlists');
     }
 }

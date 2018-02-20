@@ -15,8 +15,8 @@
       @foreach($invoices as $invoice)
         <tr>
           <td>{{$invoice->InvoiceDate}}</td>
-          <td>{{$invoice->LastName}}</td>
-          <td>{{$invoice->FirstName}}</td>
+          <td>{{$invoice->Customer->LastName}}</td>
+          <td>{{$invoice->Customer->FirstName}}</td>
           <td>
             <a href="/invoices/{{$invoice->InvoiceId}}">Details</a>
           </td>
