@@ -8,4 +8,5 @@ class MediaType extends Model
 {
     protected $primaryKey = 'MediaTypeId';
     public $timestamps = false;
+
 }
