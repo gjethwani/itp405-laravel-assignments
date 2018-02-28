@@ -5,12 +5,13 @@
 @section('content')
     <table class="table">
       <tr>
-        <th>Album Name</th>
+        <th>Reviews</th>
       </tr>
-      @foreach($albums as $album)
+      @foreach($reviews as $review)
         <tr>
           <td>
-            <a href="/albums/{{$album->AlbumId}}/reviews">{{$album->Title}}</a>
+            <h4>{{$review->title}}</h4>
+            <p>{{$review->body}}</p>
           </td>
         </tr>
       @endforeach

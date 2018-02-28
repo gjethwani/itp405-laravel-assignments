@@ -20,6 +20,7 @@ Route::post('/login', 'LoginController@login');
 Route::get('/logout', 'LoginController@logout');
 Route::get('/artists', 'ArtistsController@index');
 Route::get('/artists/{id}/albums', 'ArtistsController@albums');
+Route::get('/albums/{id}/reviews', 'AlbumsController@reviews');
 
 Route::middleware(['maintenance'])->group(function () {
     Route::get('/genres', 'GenresController@index');
