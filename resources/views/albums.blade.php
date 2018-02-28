@@ -1,6 +1,6 @@
 @extends('main-layout')
 
-@section('title', 'Playlists')
+@section('title', 'Albums')
 
 @section('content')
     <table class="table">

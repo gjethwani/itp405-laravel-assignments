@@ -1,8 +1,9 @@
 @extends('main-layout')
 
-@section('title', 'Playlists')
+@section('title', 'Reviews')
 
 @section('content')
+    <a href="/albums/{{$albumId}}/reviews/new">Write a Review</a>
     <table class="table">
       <tr>
         <th>Reviews</th>

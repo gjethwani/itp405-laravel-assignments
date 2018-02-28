@@ -21,6 +21,8 @@ Route::get('/logout', 'LoginController@logout');
 Route::get('/artists', 'ArtistsController@index');
 Route::get('/artists/{id}/albums', 'ArtistsController@albums');
 Route::get('/albums/{id}/reviews', 'AlbumsController@reviews');
+Route::get('/albums/{id}/reviews/new', 'AlbumsController@newReview');
+Route::post('/albums/{id}/reviews', 'AlbumsController@submitReview');
 
 Route::middleware(['maintenance'])->group(function () {
     Route::get('/genres', 'GenresController@index');
