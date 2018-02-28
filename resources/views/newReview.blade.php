@@ -17,11 +17,19 @@
     {{csrf_field()}}
     <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" id="title" name="title" class="form-control">
+        @if (old('title', null) != null)
+          <input type="text" id="title" name="title" class="form-control" value='{{old("title")}}'>
+        @else
+          <input type="text" id="title" name="title" class="form-control">
+        @endif
     </div>
     <div class="form-group">
         <label for="body">Body</label>
-        <input type="textarea" id="body" name="body" class="form-control">
+        @if (old('body', null) != null)
+          <input type="textarea" id="body" name="body" class="form-control" value='{{old("body")}}'>
+        @else
+          <input type="textarea" id="body" name="body" class="form-control">
+        @endif
     </div>
     <input type="submit" value="Submit Review" class="btn btn-primary">
 </form>
