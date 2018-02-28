@@ -7,11 +7,9 @@
       <tr>
         <th>Artist Name</th>
       </tr>
-      @foreach($artists as $artist)
+      @foreach($albums as $album)
         <tr>
-          <td>
-            <a href="/artists/{{$artist->ArtistId}}/albums">{{$artist->Name}}</a>
-          </td>
+          <td>{{$album->Title}}</td>
         </tr>
       @endforeach
     </table>
