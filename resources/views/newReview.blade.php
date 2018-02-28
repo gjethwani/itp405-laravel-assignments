@@ -3,6 +3,15 @@
 @section('title', 'New Review')
 
 @section('content')
+
+@if ($errors->isNotEmpty())
+    <div class="alert alert-danger" role="alert">
+      @foreach($errors->all() as $message)
+        {{$message}}
+      @endforeach
+    </div>
+@endif
+
 <h1>New Review</h1>
 <form method="post" action="/albums/{{$albumId}}/reviews">
     {{csrf_field()}}

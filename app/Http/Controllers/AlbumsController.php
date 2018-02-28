@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Album;
+use Validator;
 use DB;
 
 class AlbumsController extends Controller
@@ -22,10 +23,25 @@ class AlbumsController extends Controller
         ]);
     }
 
-    public function submitReview($albumId) {
-        DB::table('reviews')->insert(
-            ['title' => request('title'), 'body' => request('body'), 'album_id' => $albumId]
-        );
-        return redirect('/albums/'.$albumId.'/reviews');
+    public function submitReview($albumId, Request $request) {
+        $validation = Validator::make([
+            'title' => $request->input('title'),
+            'body' => $request->input('body')
+        ], [
+            'title' => 'required',
+            'body' => 'required|min:10'
+        ]);
+        if ($validation->passes()) {
+          DB::table('reviews')->insert(
+              ['title' => request('title'), 'body' => request('body'), 'album_id' => $albumId]
+          );
+          return redirect('/albums/'.$albumId.'/reviews');
+        } else {
+          return redirect('/albums/'.$albumId.'/reviews/new')
+            ->withInput()
+            ->withErrors($validation);
+        }
+
+
     }
 }
