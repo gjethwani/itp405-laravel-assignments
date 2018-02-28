@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('/login', 'LoginController@index');
 Route::post('/login', 'LoginController@login');
 Route::get('/logout', 'LoginController@logout');
+Route::get('/artists', 'ArtistsController@index');
 
 Route::middleware(['maintenance'])->group(function () {
     Route::get('/genres', 'GenresController@index');
