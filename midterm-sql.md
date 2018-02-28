@@ -1,0 +1,1 @@
+SELECT customer_reviews.headline, customer_reviews.review, books.title, author.last_name, publishers.publisher_name FROM customer_reviews, books, authors, publishers WHERE customer_reviews.book_id = books.id;
