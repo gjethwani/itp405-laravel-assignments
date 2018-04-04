@@ -48,3 +48,7 @@ Route::middleware(['protected'])->group(function () {
       echo phpinfo();
     });
 });
+
+Route::get('/login/twitter','LoginController@redirectToTwitter');
+Route::get('/login/twitter/callback', 'LoginController@handleTwitterCallback');
+Route::post('/tweets', 'TwitterController@store');
