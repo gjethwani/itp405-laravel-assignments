@@ -52,3 +52,6 @@ Route::middleware(['protected'])->group(function () {
 Route::get('/login/twitter','LoginController@redirectToTwitter');
 Route::get('/login/twitter/callback', 'LoginController@handleTwitterCallback');
 Route::post('/tweets', 'TwitterController@store');
+
+Route::get('/login/github','LoginController@redirectToGithub');
+Route::get('/login/github/callback','LoginController@handleGithubCallback');
